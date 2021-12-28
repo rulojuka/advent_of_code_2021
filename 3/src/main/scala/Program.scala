@@ -17,10 +17,8 @@ object Program {
   def calculateDecimalFromBinaryArray(binaryArray: Array[Int]): Int = {
     var multiplier = 1
     var result = 0
-    for(i <- binaryArray.indices.reverse){
-      if(binaryArray(i) == 1){
-        result += multiplier
-      }
+    binaryArray.reverse.foreach{ bit =>
+      if(bit==1) result += multiplier
       multiplier *= 2
     }
     result
@@ -47,7 +45,8 @@ object Program {
   }
 
   def cO2ScrubberFunction(array: Array[Int], index: Int, total: Int):Int = {
-    (oxygenGeneratorFunction(array,index,total) - 1) & 1
+    if(oxygenGeneratorFunction(array,index,total) == 0) 1
+    else 0
   }
 
   def main(args: Array[String]): Unit = {
